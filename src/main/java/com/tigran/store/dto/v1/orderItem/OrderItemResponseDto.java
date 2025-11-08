@@ -1,4 +1,4 @@
-package com.tigran.store.dto;
+package com.tigran.store.dto.v1.orderItem;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,11 +11,10 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductResponseDto {
+public class OrderItemResponseDto {
     private Long id;
-    private String name;
-    private String description;
-    private String categoryName;
+    private Long productId;
+    private int quantity;
     private BigDecimal price;
-    private Integer stockQuantity;
+    private BigDecimal totalPrice;
 }

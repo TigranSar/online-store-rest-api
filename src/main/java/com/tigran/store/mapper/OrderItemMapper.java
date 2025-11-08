@@ -1,6 +1,6 @@
 package com.tigran.store.mapper;
 
-import com.tigran.store.dto.OrderItemResponseDto;
+import com.tigran.store.dto.v1.orderItem.OrderItemResponseDto;
 import com.tigran.store.entity.OrderItem;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

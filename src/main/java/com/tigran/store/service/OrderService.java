@@ -1,21 +1,19 @@
 package com.tigran.store.service;
 
-import com.tigran.store.dto.OrderResponseDto;
-import com.tigran.store.dto.request.OrderItemRequestDto;
-import com.tigran.store.dto.request.OrderRequestDto;
+import com.tigran.store.dto.v1.order.OrderResponseDto;
+import com.tigran.store.dto.v1.orderItem.OrderItemRequestDto;
+import com.tigran.store.dto.v1.order.OrderRequestDto;
 import com.tigran.store.entity.*;
 import com.tigran.store.exception.ProductOutOfStockException;
-import com.tigran.store.exception.ResourceNotFoundException;
 import com.tigran.store.mapper.OrderMapper;
-import com.tigran.store.repository.CustomerRepository;
 import com.tigran.store.repository.OrderRepository;
-import com.tigran.store.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -93,7 +91,14 @@ public class OrderService {
         }
         return totalResult;
     }
-
+    private void methodik(){
+        Order order = new Order();
+        Order order1 = order;
+        order.setTotalPrice(50);
+        order.setId(Long.valueOf("1146002"));
+        order.setCreatedAt(new Date());
+        order.setUpdatedAt(timeUpdate);
+    }
 
 }
 

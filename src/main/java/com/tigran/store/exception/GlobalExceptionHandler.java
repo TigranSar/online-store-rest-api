@@ -35,6 +35,15 @@ public class GlobalExceptionHandler {
         errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
+    @ExceptionHandler(NonUniqueDataException.class)
+    public ResponseEntity<ErrorResponse> nonUniqueDataException(NonUniqueDataException nonUniqueDataException){
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setMessage(nonUniqueDataException.getMessage());
+        errorResponse.setLocalDateTime(LocalDateTime.now());
+        errorResponse.setError("Entered non-unique data");
+        errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> validationException(MethodArgumentNotValidException ex){
         ErrorResponse errorResponse = new ErrorResponse();
@@ -49,4 +58,5 @@ public class GlobalExceptionHandler {
         errorResponse.setValidationErrors(validationErrors);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
+
 }

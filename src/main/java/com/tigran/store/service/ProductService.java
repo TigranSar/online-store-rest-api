@@ -1,7 +1,7 @@
 package com.tigran.store.service;
 
-import com.tigran.store.dto.ProductResponseDto;
-import com.tigran.store.dto.request.ProductRequestDto;
+import com.tigran.store.dto.v1.product.ProductResponseDto;
+import com.tigran.store.dto.v1.product.ProductRequestDto;
 import com.tigran.store.entity.Category;
 import com.tigran.store.entity.Product;
 import com.tigran.store.exception.ResourceNotFoundException;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ProductService {
@@ -42,6 +43,31 @@ public class ProductService {
     @Transactional
     public ProductResponseDto createProduct(ProductRequestDto productRequest){
         Product product = new Product();
+        buildProduct(product, productRequest);
+        return productMapper.toProductDto(productRepository.save(product));
+    }
+    @Transactional
+    public void deleteProduct(Long id){
+        Product product = productRepository.findById(id).
+                orElseThrow(() -> new ResourceNotFoundException("Product not found"));
+        productRepository.delete(product);
+    }
+    @Transactional
+    public ProductResponseDto updateProduct(Long id, ProductRequestDto productRequestDto){
+        Product product = productRepository.findById(id).
+                orElseThrow(() -> new ResourceNotFoundException("Product not found"));
+        buildProduct(product, productRequestDto);
+        return productMapper.toProductDto(product);
+    }
+
+    @Transactional
+    public void setActive(Long id, boolean active) {
+        Product product = productRepository.findById(id).
+                orElseThrow(() -> new ResourceNotFoundException("Product not found"));
+        product.setActive(active);
+    }
+
+    private void buildProduct(Product product, ProductRequestDto productRequest){
         Category category = categoryRepository.
                 findById(productRequest.getCategoryId()).
                 orElseThrow(() -> new ResourceNotFoundException("Category not found"));
@@ -50,8 +76,12 @@ public class ProductService {
         product.setPrice(productRequest.getPrice());
         product.setStockQuantity(productRequest.getStockQuantity());
         product.setCategory(category);
-        product.setOrderItems(new ArrayList<>());
-        return productMapper.toProductDto(productRepository.save(product));
     }
-
+    public List<ProductResponseDto> getAllProduct(){
+        List<ProductResponseDto> allAvailableProducts = new ArrayList<>();
+        for (Product product : productRepository.findAllByActiveTrue()){
+            allAvailableProducts.add(productMapper.toProductDto(product));
+        }
+        return allAvailableProducts;
+    }
 }

@@ -1,10 +1,7 @@
-package com.tigran.store.dto.request;
+package com.tigran.store.dto.v1.product;
 
 import com.tigran.store.entity.Category;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +20,7 @@ public class ProductRequestDto {
     private String description;
     @NotNull(message = "Price is required")
     @PositiveOrZero(message = "The price cannot be negative")
+    @Digits(integer = 10, fraction = 2)
     private BigDecimal price;
     @NotNull(message = "Stock quantity is required")
     @PositiveOrZero(message = "Quantity cannot be negative")

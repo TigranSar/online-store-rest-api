@@ -5,20 +5,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
+@Table(name = "role_accounts")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "categories")
-public class Category {
+public class RoleAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    @OneToMany(mappedBy = "category")
-    private List<Product> products = new ArrayList<>();
-
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,17 +13,16 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "customers")
-public class Customer {
+@Table(name = "accounts")
+public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
     private String email;
-    private String phone;
-    private String address;
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> orders = new ArrayList<>();
-    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
-    private Account account;
+    private String password;
+    @OneToOne()
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
+    private List<RoleAccount> roles = new ArrayList<>();
 }

@@ -10,5 +10,5 @@ public class StoreApplication {
         SpringApplication.run(StoreApplication.class, args);
 
     }
-
 }
+
