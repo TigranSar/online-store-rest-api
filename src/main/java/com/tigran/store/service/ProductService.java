@@ -1,7 +1,7 @@
 package com.tigran.store.service;
 
-import com.tigran.store.dto.v1.product.ProductResponseDto;
-import com.tigran.store.dto.v1.product.ProductRequestDto;
+import com.tigran.store.dto.product.ProductResponseDto;
+import com.tigran.store.dto.product.ProductRequestDto;
 import com.tigran.store.entity.Category;
 import com.tigran.store.entity.Product;
 import com.tigran.store.exception.ResourceNotFoundException;

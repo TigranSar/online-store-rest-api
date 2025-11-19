@@ -1,4 +1,4 @@
-package com.tigran.store.dto.v1.orderItem;
+package com.tigran.store.dto.orderItem;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;

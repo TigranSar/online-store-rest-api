@@ -1,6 +1,6 @@
-package com.tigran.store.dto.v1.order;
+package com.tigran.store.dto.order;
 
-import com.tigran.store.dto.v1.orderItem.OrderItemRequestDto;
+import com.tigran.store.dto.orderItem.OrderItemRequestDto;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

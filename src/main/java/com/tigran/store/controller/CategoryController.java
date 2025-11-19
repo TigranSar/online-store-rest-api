@@ -1,7 +1,7 @@
 package com.tigran.store.controller;
 
-import com.tigran.store.dto.v1.category.CategoryResponseDto;
-import com.tigran.store.dto.v1.category.CategoryRequestDto;
+import com.tigran.store.dto.category.CategoryResponseDto;
+import com.tigran.store.dto.category.CategoryRequestDto;
 import com.tigran.store.service.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

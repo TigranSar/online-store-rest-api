@@ -1,6 +1,6 @@
 package com.tigran.store.mapper;
 
-import com.tigran.store.dto.v1.product.ProductResponseDto;
+import com.tigran.store.dto.product.ProductResponseDto;
 import com.tigran.store.entity.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

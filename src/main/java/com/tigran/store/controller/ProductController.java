@@ -1,7 +1,7 @@
 package com.tigran.store.controller;
 
-import com.tigran.store.dto.v1.product.ProductResponseDto;
-import com.tigran.store.dto.v1.product.ProductRequestDto;
+import com.tigran.store.dto.product.ProductResponseDto;
+import com.tigran.store.dto.product.ProductRequestDto;
 import com.tigran.store.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

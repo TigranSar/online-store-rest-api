@@ -1,6 +1,6 @@
-package com.tigran.store.dto.v1.category;
+package com.tigran.store.dto.category;
 
-import com.tigran.store.dto.v1.product.ProductResponseDto;
+import com.tigran.store.dto.product.ProductResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

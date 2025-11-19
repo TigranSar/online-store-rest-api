@@ -1,6 +1,6 @@
-package com.tigran.store.dto.v1.order;
+package com.tigran.store.dto.order;
 
-import com.tigran.store.dto.v1.orderItem.OrderItemResponseDto;
+import com.tigran.store.dto.orderItem.OrderItemResponseDto;
 import com.tigran.store.entity.OrderStatus;
 import lombok.*;
 

@@ -1,7 +1,7 @@
 package com.tigran.store.service;
 
-import com.tigran.store.dto.v1.category.CategoryResponseDto;
-import com.tigran.store.dto.v1.category.CategoryRequestDto;
+import com.tigran.store.dto.category.CategoryResponseDto;
+import com.tigran.store.dto.category.CategoryRequestDto;
 import com.tigran.store.entity.Category;
 import com.tigran.store.mapper.CategoryMapper;
 import com.tigran.store.repository.CategoryRepository;

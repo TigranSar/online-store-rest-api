@@ -1,7 +1,7 @@
 package com.tigran.store.service;
 
-import com.tigran.store.dto.v1.customer.CustomerResponseDto;
-import com.tigran.store.dto.v1.customer.CustomerRequestDto;
+import com.tigran.store.dto.customer.CustomerResponseDto;
+import com.tigran.store.dto.customer.CustomerRequestDto;
 import com.tigran.store.entity.Customer;
 import com.tigran.store.exception.NonUniqueDataException;
 import com.tigran.store.exception.ResourceNotFoundException;

@@ -1,4 +1,4 @@
-package com.tigran.store.dto.v1.product;
+package com.tigran.store.dto.product;
 
 import com.tigran.store.entity.Category;
 import jakarta.validation.constraints.*;

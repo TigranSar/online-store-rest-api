@@ -1,6 +1,6 @@
 package com.tigran.store.mapper;
 
-import com.tigran.store.dto.v1.category.CategoryResponseDto;
+import com.tigran.store.dto.category.CategoryResponseDto;
 import com.tigran.store.entity.Category;
 import org.mapstruct.Mapper;
 

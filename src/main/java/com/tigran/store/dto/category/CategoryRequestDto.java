@@ -1,4 +1,4 @@
-package com.tigran.store.dto.v1.category;
+package com.tigran.store.dto.category;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

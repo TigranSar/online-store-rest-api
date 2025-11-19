@@ -1,4 +1,4 @@
-package com.tigran.store.dto.v1.customer;
+package com.tigran.store.dto.customer;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

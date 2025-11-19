@@ -1,4 +1,4 @@
-package com.tigran.store.dto.v1.account;
+package com.tigran.store.dto.account;
 
 import jakarta.validation.constraints.Email;
 import lombok.Data;

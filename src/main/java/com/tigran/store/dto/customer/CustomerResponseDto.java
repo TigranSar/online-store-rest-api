@@ -1,6 +1,6 @@
-package com.tigran.store.dto.v1.customer;
+package com.tigran.store.dto.customer;
 
-import com.tigran.store.dto.v1.order.OrderResponseDto;
+import com.tigran.store.dto.order.OrderResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
