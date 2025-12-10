@@ -22,6 +22,11 @@ public class Account {
     @OneToOne()
     @JoinColumn(name = "customer_id")
     private Customer customer;
-    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
-    private List<RoleAccount> roles = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "account_roles",
+            joinColumns = @JoinColumn(name = "account_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<Role> roles = new ArrayList<>();
 }

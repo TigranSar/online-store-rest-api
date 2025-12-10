@@ -4,7 +4,6 @@ import com.online.store.dto.order.OrderResponseDto;
 import com.online.store.dto.order.OrderRequestDto;
 import com.online.store.entity.Order;
 import com.online.store.entity.OrderItem;
-import com.tigran.store.entity.*;
 import com.online.store.mapper.OrderMapper;
 import com.online.store.repository.OrderRepository;
 import org.springframework.stereotype.Service;

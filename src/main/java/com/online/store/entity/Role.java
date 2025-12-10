@@ -18,6 +18,6 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "role")
-    private List<RoleAccount> accounts = new ArrayList<>();
+    @ManyToMany(mappedBy = "roles")
+    private List<Account> accounts = new ArrayList<>();
 }

@@ -24,6 +24,4 @@ public class OrderController {
     public ResponseEntity<OrderResponseDto> createOrder(@Valid @RequestBody OrderRequestDto orderRequestDto){
         return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createOrder(orderRequestDto));
     }
-
-
 }
