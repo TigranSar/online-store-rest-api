@@ -26,8 +26,7 @@ public class OrderItemBuilder {
             OrderItem orderItem = new OrderItem();
             Product product = productService.getProductEntity(orderItems.getProductId());
             int quantity = orderItems.getQuantity();
-            //if quantity is less than in stock, it reduces stock by quantity
-            validateQuantity(quantity, product.getStockQuantity());
+            validateQuantity(quantity, product.getStockQuantity()); //if quantity is less than in stock, it reduces stock by quantity
             product.setStockQuantity(product.getStockQuantity() - quantity);
             // OrderItem total price
             BigDecimal productPrice = product.getPrice();

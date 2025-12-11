@@ -20,31 +20,4 @@ public class CustomerService {
         this.customerRepository = customerRepository;
         this.customerMapper = customerMapper;
     }
-    public Customer getCustomerEntity(Long id){
-        Customer customer = customerRepository.findById(id).
-                orElseThrow(() -> new ResourceNotFoundException("Customer not found"));
-        return customer;
-    }
-    public CustomerResponseDto getCustomer(Long id){
-        return customerMapper.toCustomerDto(getCustomerEntity(id));
-    }
-
-    @Transactional
-    public CustomerResponseDto createCustomer(CustomerRequestDto customerRequest){
-        checkUniqueEmail(customerRequest.getEmail());
-        checkUniquePhone(customerRequest.getPhone());
-        Customer customer = customerMapper.toCustomer(customerRequest);
-        return customerMapper.toCustomerDto(customerRepository.save(customer));
-    }
-
-    private void checkUniqueEmail(String email){
-        if(customerRepository.existsCustomerByEmail(email)){
-            throw new NonUniqueDataException("Customer with this email is present");
-        }
-    }
-    private void checkUniquePhone(String phone){
-        if (customerRepository.existsCustomerByPhone(phone)){
-            throw new NonUniqueDataException("Customer with this phone number is present");
-        }
-    }
 }

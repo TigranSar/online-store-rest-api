@@ -23,6 +23,7 @@ public class Customer {
     private String address;
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
-    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id")
     private Account account;
 }

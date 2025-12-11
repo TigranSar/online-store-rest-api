@@ -19,8 +19,7 @@ public class Account {
     private Long id;
     private String email;
     private String password;
-    @OneToOne()
-    @JoinColumn(name = "customer_id")
+    @OneToOne(mappedBy = "account")
     private Customer customer;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

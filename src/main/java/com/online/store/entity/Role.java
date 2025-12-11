@@ -1,9 +1,7 @@
 package com.online.store.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +10,12 @@ import java.util.List;
 @Table(name = "roles")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NonNull
     private String name;
     @ManyToMany(mappedBy = "roles")
     private List<Account> accounts = new ArrayList<>();

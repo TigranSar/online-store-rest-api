@@ -3,6 +3,8 @@ package com.online.store.service.order;
 import com.online.store.entity.Customer;
 import com.online.store.entity.Order;
 import com.online.store.entity.OrderStatus;
+import com.online.store.exception.ResourceNotFoundException;
+import com.online.store.repository.CustomerRepository;
 import com.online.store.service.CustomerService;
 import org.springframework.stereotype.Component;
 
@@ -10,15 +12,16 @@ import java.time.LocalDateTime;
 
 @Component
 public class OrderBuilder {
-    private final CustomerService customerService;
+    private final CustomerRepository customerRepository;
 
-    public OrderBuilder(CustomerService customerService) {
-        this.customerService = customerService;
+    public OrderBuilder(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
     }
 
     public Order buildOrder(Long customerId){
         Order order = new Order();
-        Customer customer = customerService.getCustomerEntity(customerId);
+        Customer customer = customerRepository.findById(customerId)
+                .orElseThrow(()-> new ResourceNotFoundException("Customer not found"));
         order.setCustomer(customer);
         order.setStatus(OrderStatus.NEW);
         order.setCreatedAt(LocalDateTime.now());
