@@ -13,7 +13,6 @@ public class CustomerBuilder {
         customer.setName(dto.getName());
         customer.setAddress(dto.getAddress());
         customer.setPhone(dto.getPhoneNumber());
-        customer.setEmail(dto.getEmail());
         return customer;
     }
 }

@@ -1,5 +1,7 @@
 package com.online.store.entity;
 
+import com.online.store.entity.status.AccountStatus;
+import com.online.store.entity.status.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,13 +21,10 @@ public class Account {
     private Long id;
     private String email;
     private String password;
+    @Enumerated(EnumType.STRING)
+    private AccountStatus status;
     @OneToOne(mappedBy = "account")
     private Customer customer;
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "account_roles",
-            joinColumns = @JoinColumn(name = "account_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
     private List<Role> roles = new ArrayList<>();
 }

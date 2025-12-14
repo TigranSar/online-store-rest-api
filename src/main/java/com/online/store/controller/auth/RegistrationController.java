@@ -1,4 +1,4 @@
-package com.online.store.controller;
+package com.online.store.controller.auth;
 
 import com.online.store.dto.auth.RegistrationDto;
 import com.online.store.dto.auth.RegistrationResponseDto;
@@ -18,7 +18,6 @@ public class RegistrationController {
     public RegistrationController(RegistrationService registrationService) {
         this.registrationService = registrationService;
     }
-
     @PostMapping("/register")
     public ResponseEntity<RegistrationResponseDto> register(@Valid @RequestBody RegistrationDto registrationDto){
         return ResponseEntity.ok(registrationService.register(registrationDto));

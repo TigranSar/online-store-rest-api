@@ -4,6 +4,7 @@ import com.online.store.dto.product.ProductResponseDto;
 import com.online.store.dto.product.ProductRequestDto;
 import com.online.store.entity.Category;
 import com.online.store.entity.Product;
+import com.online.store.entity.status.ProductStatus;
 import com.online.store.exception.ResourceNotFoundException;
 import com.online.store.mapper.ProductMapper;
 import com.online.store.repository.CategoryRepository;
@@ -47,10 +48,10 @@ public class ProductService {
         return productMapper.toProductDto(productRepository.save(product));
     }
     @Transactional
-    public void deleteProduct(Long id){
+    public void deactivate(Long id){
         Product product = productRepository.findById(id).
                 orElseThrow(() -> new ResourceNotFoundException("Product not found"));
-        productRepository.delete(product);
+        product.setStatus(ProductStatus.INACTIVE);
     }
     @Transactional
     public ProductResponseDto updateProduct(Long id, ProductRequestDto productRequestDto){
@@ -61,10 +62,10 @@ public class ProductService {
     }
 
     @Transactional
-    public void setActive(Long id, boolean active) {
+    public void activate(Long id, boolean active) {
         Product product = productRepository.findById(id).
                 orElseThrow(() -> new ResourceNotFoundException("Product not found"));
-        product.setActive(active);
+        product.setStatus(ProductStatus.ACTIVE);
     }
 
     private void buildProduct(Product product, ProductRequestDto productRequest){

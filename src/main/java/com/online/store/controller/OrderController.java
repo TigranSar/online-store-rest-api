@@ -6,10 +6,7 @@ import com.online.store.service.order.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/order")
@@ -24,4 +21,12 @@ public class OrderController {
     public ResponseEntity<OrderResponseDto> createOrder(@Valid @RequestBody OrderRequestDto orderRequestDto){
         return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createOrder(orderRequestDto));
     }
+//    @GetMapping
+//    public List<OrderDto> getOrders(@RequestParam(value = "status", required = false) String status) {
+//        if (status == null) {
+//            return orderService.getAllOrders(); // все заказы
+//        } else {
+//            return orderService.getOrdersByStatus(OrderStatus.valueOf(status.toUpperCase()));
+//        }
+//    }
 }

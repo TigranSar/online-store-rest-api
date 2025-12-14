@@ -1,5 +1,6 @@
 package com.online.store.entity;
 
+import com.online.store.entity.status.ProductStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,9 +24,10 @@ public class Product {
     private Category category;
     @OneToMany(mappedBy = "product")
     private List<OrderItem> orderItems = new ArrayList<>();
+    @Enumerated(EnumType.STRING)
+    private ProductStatus status;
     private String name;
     private String description;
     private BigDecimal price;
     private Integer stockQuantity;
-    private boolean active = true;
 }

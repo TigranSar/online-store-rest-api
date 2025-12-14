@@ -1,6 +1,8 @@
 package com.online.store.security;
 
 import com.online.store.entity.Account;
+import com.online.store.entity.status.AccountStatus;
+import com.online.store.entity.status.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +20,7 @@ public class CustomUserDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return account.getRoles().stream()
-                .map(role-> new SimpleGrantedAuthority(role.getName()))
+                .map(role-> new SimpleGrantedAuthority(String.valueOf(role)))
                 .collect(Collectors.toList());
     }
 
@@ -39,7 +41,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return account.getStatus() != AccountStatus.BLOCKED;
     }
 
     @Override
@@ -49,6 +51,6 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return account.getStatus() == AccountStatus.ACTIVE;
     }
 }

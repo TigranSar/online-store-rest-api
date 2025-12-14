@@ -19,7 +19,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<CategoryResponseDto> createCategory(
             @RequestBody CategoryRequestDto categoryRequest){
         CategoryResponseDto category = categoryService.createCategory(categoryRequest);

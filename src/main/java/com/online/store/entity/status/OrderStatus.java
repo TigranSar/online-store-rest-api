@@ -1,4 +1,4 @@
-package com.online.store.entity;
+package com.online.store.entity.status;
 
 public enum OrderStatus {
     NEW,

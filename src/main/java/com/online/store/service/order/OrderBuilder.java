@@ -2,10 +2,9 @@ package com.online.store.service.order;
 
 import com.online.store.entity.Customer;
 import com.online.store.entity.Order;
-import com.online.store.entity.OrderStatus;
+import com.online.store.entity.status.OrderStatus;
 import com.online.store.exception.ResourceNotFoundException;
 import com.online.store.repository.CustomerRepository;
-import com.online.store.service.CustomerService;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;

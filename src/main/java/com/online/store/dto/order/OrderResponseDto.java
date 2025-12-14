@@ -1,7 +1,7 @@
 package com.online.store.dto.order;
 
 import com.online.store.dto.orderItem.OrderItemResponseDto;
-import com.online.store.entity.OrderStatus;
+import com.online.store.entity.status.OrderStatus;
 import lombok.*;
 
 import java.math.BigDecimal;

@@ -12,7 +12,7 @@ public class CheckUniqueness {
     public CheckUniqueness(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
-    public void checkUniqueness(RegistrationDto dto){
+    public void check(RegistrationDto dto){
         if (!isUniqueEmail(dto.getEmail())){
             throw new NonUniqueDataException("User with this email is already exists");
         }else if (!isUniquePhone(dto.getPhoneNumber())){

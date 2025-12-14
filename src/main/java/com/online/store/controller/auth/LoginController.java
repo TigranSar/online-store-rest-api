@@ -1,4 +1,4 @@
-package com.online.store.controller;
+package com.online.store.controller.auth;
 
 import com.online.store.dto.auth.LoginDto;
 import com.online.store.dto.auth.LoginResponseDto;
