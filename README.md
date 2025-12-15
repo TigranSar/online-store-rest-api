@@ -1,1 +1,1 @@
-Entity–relationship model(ERD.png)
+![Entity-relationship model](ERD.png)
