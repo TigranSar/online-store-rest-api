@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,10 +22,11 @@ public class Account {
     private Long id;
     private String email;
     private String password;
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime joinedAt;
     @Enumerated(EnumType.STRING)
     private AccountStatus status;
     @OneToOne(mappedBy = "account")
     private Customer customer;
-    @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles = new ArrayList<>();
 }

@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Component
 @RequiredArgsConstructor
 public class AccountBuilder {
@@ -18,6 +20,7 @@ public class AccountBuilder {
         account.getRoles().add(Role.ROLE_USER);
         account.setEmail(dto.getEmail());
         account.setStatus(AccountStatus.ACTIVE);
+        account.setJoinedAt(LocalDateTime.now());
         account.setPassword(passwordEncoder.encode(dto.getPassword()));
         return account;
     }

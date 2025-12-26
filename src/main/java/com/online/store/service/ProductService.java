@@ -78,6 +78,7 @@ public class ProductService {
         product.setStockQuantity(productRequest.getStockQuantity());
         product.setCategory(category);
     }
+
     public List<ProductResponseDto> getAllProduct(){
         List<ProductResponseDto> allAvailableProducts = new ArrayList<>();
         for (Product product : productRepository.findAllByActiveTrue()){

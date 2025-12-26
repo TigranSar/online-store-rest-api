@@ -17,7 +17,7 @@ public class OrderBuilder {
         this.customerRepository = customerRepository;
     }
 
-    public Order buildOrder(Long customerId){
+    public Order buildOrderByAccountId(Long customerId){
         Order order = new Order();
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(()-> new ResourceNotFoundException("Customer not found"));

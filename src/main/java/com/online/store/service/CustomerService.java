@@ -20,4 +20,9 @@ public class CustomerService {
         this.customerRepository = customerRepository;
         this.customerMapper = customerMapper;
     }
+    public CustomerResponseDto getCustomerByEmail(String email){
+        Customer customer = customerRepository.findByEmail(email)
+                .orElseThrow(()-> new ResourceNotFoundException("Customer not found"));
+        return customerMapper.toCustomerDto(customer);
+    }
 }

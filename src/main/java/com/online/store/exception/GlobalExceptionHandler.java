@@ -9,6 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.nio.file.AccessDeniedException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +21,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> notFoundException(ResourceNotFoundException ex){
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setMessage(ex.getMessage());
-        errorResponse.setLocalDateTime(LocalDateTime.now());
+        errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setError("Resource not found");
         errorResponse.setStatus(HttpStatus.NOT_FOUND.value());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
@@ -30,8 +31,8 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> productOutOfStockException(ProductOutOfStockException ex){
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setMessage(ex.getMessage());
-        errorResponse.setLocalDateTime(LocalDateTime.now());
-        errorResponse.setError("Product out of stock");
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setError("PRODUCT_OUT_OF_STOCK");
         errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
@@ -39,8 +40,8 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> nonUniqueDataException(NonUniqueDataException nonUniqueDataException){
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setMessage(nonUniqueDataException.getMessage());
-        errorResponse.setLocalDateTime(LocalDateTime.now());
-        errorResponse.setError("Entered non-unique data");
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setError("ENTERED_NON_UNIQUE_DATA");
         errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
@@ -48,9 +49,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> validationException(MethodArgumentNotValidException ex){
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
-        errorResponse.setLocalDateTime(LocalDateTime.now());
+        errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setMessage("Validation failed");
-        errorResponse.setError("Invalid request");
+        errorResponse.setError("INVALID_REQUEST");
         Map<String, String> validationErrors = new HashMap<>();
         for (FieldError fieldError : ex.getBindingResult().getFieldErrors()){
             validationErrors.put(fieldError.getField(),fieldError.getDefaultMessage());
@@ -62,9 +63,36 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> wrongPasswordException(BadCredentialsException badCredentialsException){
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setMessage("Wrong password");
-        errorResponse.setLocalDateTime(LocalDateTime.now());
-        errorResponse.setError("Wrong password");
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setError("WRONG_PASSWORD");
         errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
+    @ExceptionHandler(OrderCannotBeCancelledException.class)
+    public ResponseEntity<ErrorResponse> cancelOrderException(OrderCannotBeCancelledException orderCannotBeCancelled){
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setMessage(orderCannotBeCancelled.getMessage());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setError("ORDER_CANNOT_BE_CANCELED");
+        errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
+    @ExceptionHandler(OrderStatusChangeNotAllowedException.class)
+    public ResponseEntity<ErrorResponse> orderStatusException(OrderStatusChangeNotAllowedException orderStatusException){
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setMessage(orderStatusException.getMessage());
+        errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setError("ORDER_STATUS_CANNOT_BE_CHANGED");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ErrorResponse> accessDeniedException(AccessDeniedException accessDeniedException){
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setMessage("You don't have permission for this resource");
+        errorResponse.setStatus(HttpStatus.FORBIDDEN.value());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setError("USER_DO_NOT_HAVE_PERMISSION");
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorResponse);
     }
 }

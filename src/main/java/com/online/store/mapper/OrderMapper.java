@@ -7,7 +7,6 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", uses = {OrderItemMapper.class})
 public interface OrderMapper {
-
     @Mapping(source = "customer.id", target = "customerId")
     OrderResponseDto toOrderResponseDto(Order order);
     //Customer must be set in the service using customerId

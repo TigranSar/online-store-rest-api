@@ -7,6 +7,7 @@ import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,6 @@ public class ErrorResponse {
     private int status;
     private String error;
     private String message;
-    private LocalDateTime localDateTime;
-    private Map<String, String> validationErrors;
+    private LocalDateTime timestamp;
+    private Map<String, String> validationErrors = new HashMap<>();
 }

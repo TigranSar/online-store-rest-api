@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class JwtUtilsService {
@@ -34,7 +35,7 @@ public class JwtUtilsService {
 
     public String extractUsername(String token){
         return Jwts.parserBuilder()
-                .setSigningKey(secretKey)
+                .setSigningKey(getSigningKey())
                 .build()
                 .parseClaimsJwt(token)
                 .getBody()
@@ -54,11 +55,9 @@ public class JwtUtilsService {
 
     private Map<String, Object> getRoles(Collection<? extends GrantedAuthority> list) {
         Map<String, Object> claims = new HashMap<>();
-        List<String> roles = new ArrayList<>();
-        for (GrantedAuthority rolesList : list) {
-            roles.add(rolesList.getAuthority());
-        }
-        claims.put("roles", roles);
+        claims.put("roles", list.stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList()));
         return claims;
     }
 }
