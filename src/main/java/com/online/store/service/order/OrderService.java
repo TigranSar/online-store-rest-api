@@ -89,7 +89,7 @@ public class OrderService {
     @PreAuthorize("hasRole('USER')")
     public Page<OrderResponseDto> getOwnOrders(OrderStatus status, Pageable pageable){
         if (status != null){
-            return orderRepository.findOrderByStatus(status,pageable)
+            return orderRepository.findOrdersByCustomerAccountIdAndStatus(getCurrentUserId(),status,pageable)
                     .map(orderMapper::toOrderResponseDto);
         }
         return orderRepository.findOrdersByCustomerAccountId(getCurrentUserId(),pageable)

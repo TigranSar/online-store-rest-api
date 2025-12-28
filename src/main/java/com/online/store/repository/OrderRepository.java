@@ -19,5 +19,7 @@ import java.util.Optional;
 public interface OrderRepository extends JpaRepository<Order,Long>, JpaSpecificationExecutor<Order> {
     @Query("SELECT o FROM Order o WHERE o.customer.account.id = :accountId")
     Page<Order> findOrdersByCustomerAccountId(@Param("accountId")Long id, Pageable pageable);
+    @Query("SELECT o FROM Order o WHERE o.customer.account.id = :accountId AND o.status = :orderStatus")
+    Page<Order> findOrdersByCustomerAccountIdAndStatus(@Param("accountId")Long id, @Param("orderStatus")OrderStatus status, Pageable pageable);
     Page<Order> findOrderByStatus(OrderStatus status, Pageable pageable);
 }

@@ -9,6 +9,9 @@ import com.online.store.exception.ResourceNotFoundException;
 import com.online.store.mapper.ProductMapper;
 import com.online.store.repository.CategoryRepository;
 import com.online.store.repository.ProductRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,18 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProductService {
-    private ProductRepository productRepository;
-    private CategoryRepository categoryRepository;
-    private ProductMapper productMapper;
+    private final ProductRepository productRepository;
+    private final ProductMapper productMapper;
+    private final ProductBuilder productBuilder;
 
-    public ProductService(ProductRepository productRepository,
-                          CategoryRepository categoryRepository,
-                          ProductMapper productMapper) {
-        this.productRepository = productRepository;
-        this.categoryRepository = categoryRepository;
-        this.productMapper = productMapper;
-    }
     public Product getProductEntity(Long id){
         Product product = productRepository.
                 findById(id).
@@ -42,48 +39,11 @@ public class ProductService {
     }
 
     @Transactional
-    public ProductResponseDto createProduct(ProductRequestDto productRequest){
-        Product product = new Product();
-        buildProduct(product, productRequest);
-        return productMapper.toProductDto(productRepository.save(product));
-    }
-    @Transactional
-    public void deactivate(Long id){
-        Product product = productRepository.findById(id).
-                orElseThrow(() -> new ResourceNotFoundException("Product not found"));
-        product.setStatus(ProductStatus.INACTIVE);
-    }
-    @Transactional
-    public ProductResponseDto updateProduct(Long id, ProductRequestDto productRequestDto){
-        Product product = productRepository.findById(id).
-                orElseThrow(() -> new ResourceNotFoundException("Product not found"));
-        buildProduct(product, productRequestDto);
+    @PreAuthorize("hasRole('ADMIN')")
+    public ProductResponseDto createProduct(ProductRequestDto productRequestDto){
+        Product product = productBuilder.build(productRequestDto);
+        productRepository.save(product);
         return productMapper.toProductDto(product);
     }
 
-    @Transactional
-    public void activate(Long id, boolean active) {
-        Product product = productRepository.findById(id).
-                orElseThrow(() -> new ResourceNotFoundException("Product not found"));
-        product.setStatus(ProductStatus.ACTIVE);
-    }
-
-    private void buildProduct(Product product, ProductRequestDto productRequest){
-        Category category = categoryRepository.
-                findById(productRequest.getCategoryId()).
-                orElseThrow(() -> new ResourceNotFoundException("Category not found"));
-        product.setName(productRequest.getName());
-        product.setDescription(productRequest.getDescription());
-        product.setPrice(productRequest.getPrice());
-        product.setStockQuantity(productRequest.getStockQuantity());
-        product.setCategory(category);
-    }
-
-    public List<ProductResponseDto> getAllProduct(){
-        List<ProductResponseDto> allAvailableProducts = new ArrayList<>();
-        for (Product product : productRepository.findAllByActiveTrue()){
-            allAvailableProducts.add(productMapper.toProductDto(product));
-        }
-        return allAvailableProducts;
-    }
 }
