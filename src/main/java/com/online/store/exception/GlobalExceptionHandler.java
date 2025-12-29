@@ -95,4 +95,13 @@ public class GlobalExceptionHandler {
         errorResponse.setError("USER_DO_NOT_HAVE_PERMISSION");
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorResponse);
     }
+    @ExceptionHandler(InvalidProductStatusTransitionException.class)
+    public ResponseEntity<ErrorResponse> invalidProductStatusException(InvalidProductStatusTransitionException invalidProductStatusTransitionException){
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setMessage(invalidProductStatusTransitionException.getMessage());
+        errorResponse.setStatus(HttpStatus.FORBIDDEN.value());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setError("INVALID_PRODUCT_STATUS");
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorResponse);
+    }
 }

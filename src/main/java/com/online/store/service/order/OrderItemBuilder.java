@@ -5,7 +5,7 @@ import com.online.store.entity.Order;
 import com.online.store.entity.OrderItem;
 import com.online.store.entity.Product;
 import com.online.store.exception.ProductOutOfStockException;
-import com.online.store.service.ProductService;
+import com.online.store.service.product.ProductService;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
