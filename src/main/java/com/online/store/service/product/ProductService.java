@@ -10,7 +10,7 @@ import com.online.store.exception.ProductAlreadyInactiveException;
 import com.online.store.exception.ResourceNotFoundException;
 import com.online.store.mapper.ProductMapper;
 import com.online.store.repository.ProductRepository;
-import com.online.store.service.CategoryService;
+import com.online.store.service.category.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

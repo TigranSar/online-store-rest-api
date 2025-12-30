@@ -4,7 +4,7 @@ import com.online.store.dto.product.ProductRequestDto;
 import com.online.store.entity.Category;
 import com.online.store.entity.Product;
 import com.online.store.entity.status.ProductStatus;
-import com.online.store.service.CategoryService;
+import com.online.store.service.category.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

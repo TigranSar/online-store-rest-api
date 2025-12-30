@@ -2,15 +2,14 @@ package com.online.store.entity;
 
 import com.online.store.entity.status.CategoryStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "categories")
@@ -23,5 +22,4 @@ public class Category {
     private CategoryStatus status;
     @OneToMany(mappedBy = "category")
     private List<Product> products = new ArrayList<>();
-
 }

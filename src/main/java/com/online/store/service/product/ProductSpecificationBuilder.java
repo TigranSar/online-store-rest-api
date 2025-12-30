@@ -2,9 +2,7 @@ package com.online.store.service.product;
 
 import com.online.store.entity.Category;
 import com.online.store.entity.Product;
-import com.online.store.service.CategoryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 

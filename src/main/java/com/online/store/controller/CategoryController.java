@@ -2,7 +2,7 @@ package com.online.store.controller;
 
 import com.online.store.dto.category.CategoryResponseDto;
 import com.online.store.dto.category.CategoryRequestDto;
-import com.online.store.service.CategoryService;
+import com.online.store.service.category.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +22,7 @@ public class CategoryController {
     @PostMapping
     public ResponseEntity<CategoryResponseDto> createCategory(
             @RequestBody CategoryRequestDto categoryRequest){
-        CategoryResponseDto category = categoryService.createCategory(categoryRequest);
+        CategoryResponseDto category = categoryService.create(categoryRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(category);
     }
 }
