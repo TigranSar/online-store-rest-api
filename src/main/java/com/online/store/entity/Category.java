@@ -22,4 +22,5 @@ public class Category {
     private CategoryStatus status;
     @OneToMany(mappedBy = "category")
     private List<Product> products = new ArrayList<>();
+
 }

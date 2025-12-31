@@ -18,14 +18,14 @@ public class ProductController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ProductResponseDto createProduct(@RequestBody ProductRequestDto request) {
-        return productService.createProduct(request);
+        return productService.create(request);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ProductResponseDto updateProduct(@PathVariable Long id,
                                             @RequestBody ProductRequestDto request) {
-        return productService.updateProduct(id, request);
+        return productService.update(id, request);
     }
 
     @PreAuthorize("hasRole('ADMIN')")

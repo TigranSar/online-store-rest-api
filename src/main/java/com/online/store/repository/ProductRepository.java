@@ -15,4 +15,5 @@ import java.util.Optional;
 public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpecificationExecutor<Product> {
     Page<Product> findAllByActiveTrue(Specification<Product> specification, Pageable pageable);
     Optional<Product> findByIdAndActiveTrue(Long id);
+    boolean existsByCategoryId(Long id);
 }
